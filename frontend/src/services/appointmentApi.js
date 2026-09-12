@@ -1,8 +1,7 @@
 import axios from "axios";
 
-
 const api = axios.create({
-    baseURL: "http://127.0.0.1:8000",
+    baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
         "Content-Type": "application/json",
     },
@@ -10,12 +9,9 @@ const api = axios.create({
 
 
 export const getAppointments = async (filters = {}) => {
-    const response = await api.get(
-        "/appointments",
-        {
-            params: filters,
-        }
-    );
+    const response = await api.get("/appointments", {
+        params: filters,
+    });
 
     return response.data;
 };
